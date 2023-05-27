@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>blaubeereistee.org</title>
+    <style>
+        body {
+            background-image: url('https://cdn.discordapp.com/attachments/1111698007755341888/1112099974277234738/123.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            font-family: Helvetica, Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .form-container button {
+            width: 50%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #9C27B0;
+            transform: scale(1.05);
+        }
+
+        #clearLocalStorageBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #clearLocalStorageBtn:hover {
+            background-color: #FF5722;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <audio src="https://cdn.discordapp.com/attachments/1111698007755341888/1111784875784155217/Undertale_OST-_023_-_Shop_Trap_Remix_FREE_DOWNLOAD.mp3" autoplay loop></audio>
+
+    <div class="form-container">
+        <h2 style="font-family: Helvetica, Arial, sans-serif; font-weight: bold;">register</h2>
+        <input type="text" id="regUsername" placeholder="user">
+        <input type="password" id="regPassword" placeholder="password">
+        <button onclick="register()" id="registerBtn">register</button>
+    </div>
+
+    <div class="form-container">
+        <h2 style="font-family: Helvetica, Arial, sans-serif; font-weight: bold;">login</h2>
+        <input type="text" id="loginUsername" placeholder="user">
+        <input type="password" id="loginPassword" placeholder="password">
+        <button onclick="login()" id="loginBtn">login</button>
+    </div>
+
+    <button id="clearLocalStorageBtn" onclick="clearLocalStorage()">delete account</button>
+
+    <script>
+        function register() {
+            var username = document.getElementById("regUsername").value;
+            var password = document.getElementById("regPassword").value;
+
+            if (username && password) {
+                localStorage.setItem("username", username);
+                localStorage.setItem("password", password);
+                alert("Successfully created account");
+            } else {
+                alert("Please fill all fields");
+            }
+        }
+
+        function login() {
+            var username = document.getElementById("loginUsername").value;
+            var password = document.getElementById("loginPassword").value;
+            var storedUsername = localStorage.getItem("username");
+            var storedPassword = localStorage.getItem("password");
+
+            if (username === storedUsername && password === storedPassword) {
+                alert("Logged in");
+                window.location.href = "main.html"; // Weiterleitung zur main.html
+            } else {
+                alert("Invalid account data");
+            }
+        }
+
+        function clearLocalStorage() {
+            localStorage.clear();
+            alert("Account data deleted");
+        }
+    </script>
+</body>
+</html>
